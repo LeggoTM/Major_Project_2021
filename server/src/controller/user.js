@@ -6,15 +6,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 exports.signUp = (req, res) => {
-    const { first_name, last_name, email, password, phone_no, roles } =
-        req.body;
+    const { first_name, last_name, email, password, phone_no } = req.body;
 
     if (
         !first_name ||
         !last_name ||
         !email ||
         !password ||
-        !roles ||
         !req.file ||
         !phone_no
     ) {
@@ -32,7 +30,6 @@ exports.signUp = (req, res) => {
             email,
             hashed_password,
             phone_no,
-            roles,
             profile_picture: req.file.path,
         });
         _user
