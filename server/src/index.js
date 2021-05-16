@@ -15,6 +15,7 @@ app.get("/", (_req, res) =>
             "<li>/ : GET : Home</li>" +
             "<li>/api/user/sign-up : POST : to create a new user</li>" +
             "<li>/api/user/sign-in : POST : to sign an existing user</li>" +
+            "<li>/api/movie/{movie id} : GET : <u>you need to sign in first</u> : get single movie detail by movie id</li>" +
             "<li>/api/movie/popular : GET : <u>you need to sign in first</u> : to get popular movies list</li>" +
             "<li>/api/misc/image-config : GET : to get image path config</li>" +
             "</ul>",
