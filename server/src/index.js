@@ -10,6 +10,7 @@ app.use("/images", express.static("images"));
 app.get("/", (_req, res) => res.send("Welcome to movie review app server"));
 app.use("/api/user", require("./routes/user"));
 app.use("/api/movie", require("./routes/movie"));
+app.use("/api/misc", require("./routes/misc"));
 
 mongoose.connect(
     "mongodb+srv://" +
