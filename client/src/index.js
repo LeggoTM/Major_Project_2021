@@ -1,4 +1,12 @@
 import ReactDOM from "react-dom";
 import App from "./App";
+import { GlobalStyle } from "./globalStyles";
+import { BrowserRouter as Router } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+    <Router>
+        <GlobalStyle />
+        <App />
+    </Router>,
+    document.getElementById("root"),
+);

@@ -1,5 +1,15 @@
+import { Switch, Route } from "react-router-dom";
+
+import { Signin } from "./pages";
+
 const App = () => {
-    return <h1>Hello world</h1>;
+    return (
+        <Switch>
+            <Route path='/'>
+                <Signin />
+            </Route>
+        </Switch>
+    );
 };
 
 export default App;
