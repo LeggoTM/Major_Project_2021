@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 
@@ -7,21 +7,28 @@ import {
     SignupWrapper,
     ButtonGroup,
     SignupForm,
-    SignupFormOption,
-    SignupFormOptions,
     SignupHeader,
     SignupSvg,
     ImageFeild,
     Upload,
     UploadLabel,
     Display,
+    ErrorMessage,
 } from "./style";
-import { Button, TextFeild } from "../../styles";
+import { ChangePage, TextFeild } from "../../styles";
 import { ReactComponent as Illustration } from "../../assets/svg/signup.svg";
 
 const Signup = () => {
     const [image, setImage] = useState(null);
-    const { register, getValues } = useForm();
+    const {
+        register,
+        getValues,
+        watch,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const password = watch("password");
 
     const handleImageChange = () => {
         try {
@@ -29,6 +36,18 @@ const Signup = () => {
         } catch (e) {
             setImage(null);
         }
+    };
+
+    const onSubmit = () => {
+        const data = new FormData();
+        data.append("first_name", getValues("first_name"));
+        data.append("last_name", getValues("last_name"));
+        data.append("email", getValues("email"));
+        data.append("password", getValues("password"));
+        data.append("phone_no", getValues("phone_no"));
+        data.append("profile_picture", getValues("profile_picture"));
+
+        console.log(data);
     };
 
     return (
@@ -52,38 +71,74 @@ const Signup = () => {
                         </UploadLabel>
                     </ImageFeild>
                     <TextFeild
-                        {...register("first_name")}
+                        {...register("first_name", {
+                            required: "You must give first name",
+                        })}
                         placeholder='Enter your first name here'
                     />
+                    {errors.first_name && (
+                        <ErrorMessage>{errors.first_name.message}</ErrorMessage>
+                    )}
                     <TextFeild
-                        {...register("last_name")}
+                        {...register("last_name", {
+                            required: "You must give last name",
+                        })}
                         placeholder='Enter your last name here'
                     />
+                    {errors.last_name && (
+                        <ErrorMessage>{errors.last_name.message}</ErrorMessage>
+                    )}
                     <TextFeild
-                        {...register("email")}
+                        {...register("email", {
+                            required: "You must spacify email",
+                        })}
                         placeholder='Enter your email here'
                     />
+                    {errors.email && (
+                        <ErrorMessage>{errors.email.message}</ErrorMessage>
+                    )}
                     <TextFeild
-                        {...register("password")}
+                        type='password'
+                        {...register("password", {
+                            required: "You must spacify password",
+                        })}
                         placeholder='Enter your password here'
                     />
+                    {errors.password && (
+                        <ErrorMessage>{errors.password.message}</ErrorMessage>
+                    )}
                     <TextFeild
-                        {...register("re_password")}
+                        type='password'
+                        {...register("re_password", {
+                            validate: (value) =>
+                                value === password ||
+                                "The passwords do not match",
+                            required: "You must re-enter email",
+                        })}
                         placeholder='Enter your password again'
                     />
+                    {errors.re_password && (
+                        <ErrorMessage>
+                            {errors.re_password.message}
+                        </ErrorMessage>
+                    )}
                     <TextFeild
-                        {...register("phone_no")}
+                        {...register("phone_no", {
+                            required: "You must spacify your phone number",
+                        })}
                         placeholder='Enter your phone number here'
                     />
-                    <SignupFormOptions>
-                        <SignupFormOption>
-                            Already registered ?
-                        </SignupFormOption>
-                    </SignupFormOptions>
+                    {errors.phone_no && (
+                        <ErrorMessage>{errors.phone_no.message}</ErrorMessage>
+                    )}
                 </SignupForm>
                 <ButtonGroup>
-                    <Button>Log In</Button>
-                    <Button secondary>Sign Up</Button>
+                    <ChangePage to='/' onClick={handleSubmit(onSubmit)}>
+                        Sign Up
+                    </ChangePage>
+                    <ChangePage to='/' secondary>
+                        Log In
+                    </ChangePage>
                 </ButtonGroup>
             </SignupBox>
         </SignupWrapper>

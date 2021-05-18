@@ -1,3 +1,5 @@
+import { useForm } from "react-hook-form";
+
 import {
     SigninBox,
     SigninWrapper,
@@ -7,28 +9,64 @@ import {
     SigninFormOptions,
     SigninHeader,
     SigninSvg,
+    ErrorMessage,
 } from "./style";
-import { Button, TextFeild } from "../../styles";
+import { ChangePage, TextFeild } from "../../styles";
 
 import { ReactComponent as Illustration } from "../../assets/svg/signin.svg";
 
 const Signin = () => {
+    const {
+        register,
+        getValues,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = () => {
+        const data = {
+            email: getValues("email"),
+            password: getValues("password"),
+        };
+        console.log(data);
+    };
+
     return (
         <SigninWrapper>
             <SigninBox>
                 <SigninHeader>Sign In</SigninHeader>
                 <SigninForm>
-                    <TextFeild placeholder='Enter your email here' />
-                    <TextFeild placeholder='Enter your password here' />
+                    <TextFeild
+                        {...register("email", {
+                            required: "do not leave it empty",
+                        })}
+                        placeholder='Enter your email here'
+                    />
+                    {errors.email && (
+                        <ErrorMessage>{errors.email.message}</ErrorMessage>
+                    )}
+                    <TextFeild
+                        type='password'
+                        {...register("password", {
+                            required: "do not leave it empty",
+                        })}
+                        placeholder='Enter your password here'
+                    />
+                    {errors.password && (
+                        <ErrorMessage>{errors.password.message}</ErrorMessage>
+                    )}
                     <SigninFormOptions>
                         <SigninFormOption>Forgot Password ?</SigninFormOption>
-                        <SigninFormOption>Not registered yet?</SigninFormOption>
                         <SigninFormOption>Reset</SigninFormOption>
                     </SigninFormOptions>
                 </SigninForm>
                 <ButtonGroup>
-                    <Button>Log In</Button>
-                    <Button secondary>Sign Up</Button>
+                    <ChangePage to='/home' onClick={handleSubmit(onSubmit)}>
+                        Log In
+                    </ChangePage>
+                    <ChangePage to='/register' secondary>
+                        Sign Up
+                    </ChangePage>
                 </ButtonGroup>
             </SigninBox>
             <SigninSvg>

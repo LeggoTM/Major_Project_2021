@@ -57,3 +57,8 @@ export const SigninSvg = styled.div`
         align-items: center;
     }
 `;
+export const ErrorMessage = styled.span`
+    font-size: 10px;
+    color: red;
+    font-weight: 700;
+`;

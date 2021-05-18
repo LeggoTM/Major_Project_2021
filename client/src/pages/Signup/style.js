@@ -27,16 +27,6 @@ export const SignupForm = styled.div`
     width: 100%;
     padding: 10px 40px;
 `;
-export const SignupFormOptions = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-`;
-export const SignupFormOption = styled.div`
-    cursor: pointer;
-`;
 export const ButtonGroup = styled.div`
     margin: 50px 0;
     width: 100%;
@@ -99,4 +89,9 @@ export const Display = styled.img`
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+`;
+export const ErrorMessage = styled.span`
+    font-size: 10px;
+    color: red;
+    font-weight: 700;
 `;

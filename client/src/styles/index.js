@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Button = styled.div`
+export const ChangePage = styled(Link)`
+    cursor: pointer;
     background: #ffffff;
     color: #000000;
     padding: 10px 20px;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: bold;
     ${({ secondary }) =>
         secondary &&
@@ -13,7 +14,7 @@ export const Button = styled.div`
             background: transparent;
             border: 2px solid #ffffff;
             color: #ffffff;
-        `}
+        `};
 `;
 export const TextFeild = styled.input`
     margin: 10px 0;
