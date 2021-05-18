@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-import Raleway from "./assets/fonts/Raleway-VariableFont_wght.ttf";
+import Raleway from "../assets/fonts/Raleway-VariableFont_wght.ttf";
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -14,13 +14,12 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 100vh;
         color: #FFFFFF;
         font-family: 'Raleway', sans-serif;
         background: linear-gradient(
                     20deg,
                     hsl(192, 100%, 53%),
                     hsl(266, 40%, 64%)
-                    );
+        );
     }
 `;

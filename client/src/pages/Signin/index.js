@@ -1,15 +1,14 @@
 import {
     SigninBox,
     SigninWrapper,
-    Button,
     ButtonGroup,
     SigninForm,
     SigninFormOption,
     SigninFormOptions,
     SigninHeader,
     SigninSvg,
-    TextFeild,
 } from "./style";
+import { Button, TextFeild } from "../../styles";
 
 import { ReactComponent as Illustration } from "../../assets/svg/signin.svg";
 
@@ -29,7 +28,7 @@ const Signin = () => {
                 </SigninForm>
                 <ButtonGroup>
                     <Button>Log In</Button>
-                    <Button>Sign Up</Button>
+                    <Button secondary>Sign Up</Button>
                 </ButtonGroup>
             </SigninBox>
             <SigninSvg>

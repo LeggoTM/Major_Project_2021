@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SigninWrapper = styled.div`
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -26,24 +27,6 @@ export const SigninForm = styled.div`
     width: 100%;
     padding: 10px 40px;
 `;
-export const TextFeild = styled.input`
-    margin: 10px 0;
-    padding: 20px 20px;
-    border: 2px solid #ffffff;
-    border-radius: 50px;
-    background-color: transparent;
-    font-size: 14px;
-    color: #ffffff;
-    &::placeholder {
-        font-size: 14px;
-        color: #ffffff;
-    }
-    &:focus {
-        outline: none;
-        background-color: #ffffff;
-        color: #000000;
-    }
-`;
 export const SigninFormOptions = styled.div`
     display: flex;
     flex-direction: row;
@@ -64,13 +47,6 @@ export const ButtonGroup = styled.div`
     @media (min-width: 800px) {
         padding: 0 80px;
     }
-`;
-export const Button = styled.div`
-    background: #ffffff;
-    color: #000000;
-    padding: 10px 20px;
-    border-radius: 50px;
-    cursor: pointer;
 `;
 export const SigninSvg = styled.div`
     flex: 2;
