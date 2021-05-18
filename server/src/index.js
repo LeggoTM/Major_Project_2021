@@ -1,11 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const app = express();
+const cors = require("cors");
 
 const port = process.env.PORT || 8000;
 require("dotenv").config();
-app.use(express.json());
+
+app.use(cors());
 app.use("/images", express.static("images"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (_req, res) =>
     res.send(

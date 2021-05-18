@@ -2,6 +2,22 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const ChangePage = styled(Link)`
+    text-decoration: none;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    ${({ secondary }) =>
+        secondary &&
+        css`
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        `};
+`;
+export const Button = styled.button`
     cursor: pointer;
     background: #ffffff;
     color: #000000;

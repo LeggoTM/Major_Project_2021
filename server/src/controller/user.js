@@ -8,14 +8,7 @@ dotenv.config();
 exports.signUp = (req, res) => {
     const { first_name, last_name, email, password, phone_no } = req.body;
 
-    if (
-        !first_name ||
-        !last_name ||
-        !email ||
-        !password ||
-        !req.file ||
-        !phone_no
-    ) {
+    if (!first_name || !last_name || !email || !password || !phone_no) {
         return res.status(400).json({ err: "Invelid Inputs" });
     }
 
@@ -30,7 +23,7 @@ exports.signUp = (req, res) => {
             email,
             hashed_password,
             phone_no,
-            profile_picture: req.file.path,
+            profile_picture: req.file ? req.file.path : "images/index.png",
         });
         _user
             .save()

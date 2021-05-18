@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import {
     SignupBox,
@@ -15,10 +16,11 @@ import {
     Display,
     ErrorMessage,
 } from "./style";
-import { ChangePage, TextFeild } from "../../styles";
+import { Button, ChangePage, TextFeild } from "../../styles";
 import { ReactComponent as Illustration } from "../../assets/svg/signup.svg";
 
 const Signup = () => {
+    const history = useHistory();
     const [image, setImage] = useState(null);
     const {
         register,
@@ -47,7 +49,14 @@ const Signup = () => {
         data.append("phone_no", getValues("phone_no"));
         data.append("profile_picture", getValues("profile_picture"));
 
-        console.log(data);
+        fetch("http://localhost:8000/api/user/sign-up", {
+            method: "post",
+            body: data,
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .then(() => history.push("/"))
+            .catch((err) => console.log(err));
     };
 
     return (
@@ -133,9 +142,9 @@ const Signup = () => {
                     )}
                 </SignupForm>
                 <ButtonGroup>
-                    <ChangePage to='/' onClick={handleSubmit(onSubmit)}>
+                    <Button to='/' onClick={handleSubmit(onSubmit)}>
                         Sign Up
-                    </ChangePage>
+                    </Button>
                     <ChangePage to='/' secondary>
                         Log In
                     </ChangePage>
