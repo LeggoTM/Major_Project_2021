@@ -54,7 +54,7 @@ const Signup = () => {
             body: data,
         })
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => alert(data.msg))
             .then(() => history.push("/"))
             .catch((err) => console.log(err));
     };

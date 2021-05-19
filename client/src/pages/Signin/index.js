@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import {
     SigninBox,
@@ -16,6 +17,7 @@ import { ChangePage, TextFeild } from "../../styles";
 import { ReactComponent as Illustration } from "../../assets/svg/signin.svg";
 
 const Signin = () => {
+    const history = useHistory();
     const {
         register,
         getValues,
@@ -28,7 +30,14 @@ const Signin = () => {
             email: getValues("email"),
             password: getValues("password"),
         };
-        console.log(data);
+        fetch("http://localhost:8000/api/user/sign-in", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err));
     };
 
     return (
