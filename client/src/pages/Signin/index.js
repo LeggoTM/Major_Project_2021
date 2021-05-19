@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 
 import {
     SigninBox,
@@ -17,7 +16,6 @@ import { ChangePage, TextFeild } from "../../styles";
 import { ReactComponent as Illustration } from "../../assets/svg/signin.svg";
 
 const Signin = () => {
-    const history = useHistory();
     const {
         register,
         getValues,
